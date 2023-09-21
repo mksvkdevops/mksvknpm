@@ -1,0 +1,29 @@
+name: My GitHub Actions Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Set your desired Node.js version here
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run custom script
+      run: |
+        # Add your custom script here
+        # For example, running a script named "myscript.sh"
+        cd script
+        node index.js
