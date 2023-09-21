@@ -1,0 +1,43 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main  # Adjust this branch as needed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Adjust the Node.js version as needed
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script
+        run: |
+          #!/bin/bash
+          # Get the organization name from the repository URL
+          ORG_NAME=$(echo ${{ github.repository }} | cut -d / -f 1)
+          echo "Organization name: $ORG_NAME"
+
+          # Access the GitHub token from secrets
+          GH_TOKEN=$GH_TOKEN
+          echo "GitHub token: $GH_TOKEN"
+
+          # Add your script here
+          # For example, you can use $ORG_NAME and $GH_TOKEN in your script
+
+          # Run your script
+          ./your-script.sh
+
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
