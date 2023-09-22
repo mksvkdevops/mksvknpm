@@ -1,8 +1,7 @@
-//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
 
 const axios = require('axios');
 
-const githubToken = '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'; 
+const githubToken = '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'; 
 const organizationName = "mksvkdevops"
 const keepOnlyLatestVersions = 0
 
