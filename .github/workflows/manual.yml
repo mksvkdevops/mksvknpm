@@ -1,15 +1,22 @@
-name: Node.js Script
+name: Manual Script Run
 
 on:
-  workflow_dispatch :
+  workflow_dispatch: # This event allows manual triggering
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # This step checks out your repository's code.
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18' # Specify Node.js version 18
+
+      - name: Install dependencies
+        run: npm install # If your project has dependencies
 
       - name: Run Node.js script
-        run: node index.js  # Here, you reference the script by its filename.
+        run: node index.js # Replace with the path to your Node.js script
