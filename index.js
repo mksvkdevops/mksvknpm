@@ -1,8 +1,8 @@
 
 const axios = require('axios');
 
-const githubToken = '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'; 
-const organizationName = "mksvkdevops"
+const githubToken = process.env.GH_TOKEN ; 
+const organizationName = process.env.ORG_NAME
 const keepOnlyLatestVersions = 0
 
 const headers = {

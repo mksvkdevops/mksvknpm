@@ -6,6 +6,9 @@ on:
 jobs:
   run-script:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GH_TOKEN }} # Use the GitHub Token secret
+      ORG_NAME: ${{ secrets.ORG_NAME}} #
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
