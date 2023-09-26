@@ -7,11 +7,26 @@ jobs:
   run-script:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }} # Use the GitHub Token secret
       ORG_NAME: ${{ secrets.ORG_NAME}} #
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
+        
+      - name: Generate a GitHub token
+        id: generate-token
+        uses: actions/github-script@v5
+        with:
+          script: |
+            const token = await github.actions.createToken({
+              scopes: ['repo', 'packages:write'],
+            });
+            console.log(token);
+
+      - name: Set GH_TOKEN environment variable
+        run: |
+          echo "GH_TOKEN=${{ steps.generate-token.outputs.token }}" >> $GITHUB_ENV
+
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
