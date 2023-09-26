@@ -9,6 +9,11 @@ jobs:
     env:
       ORG_NAME: ${{ secrets.ORG_NAME}} #
     steps:
+      - name: Clear GitHub Actions Cache
+        run: |
+          echo "::set-env name=CLEAR_ACTIONS_CACHE::true"
+          echo "Cache cleared."
+
       - name: Checkout code
         uses: actions/checkout@v2
 
